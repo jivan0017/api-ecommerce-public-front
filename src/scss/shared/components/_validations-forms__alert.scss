@@ -1,0 +1,40 @@
+.form-alerts__container {
+	position: relative;
+	display: flex;
+
+	input {
+		position: relative;
+	}
+
+	.is-invalid {
+		&.ng-touched{
+			border: 2px solid red;
+			border-radius: 5px;
+
+			& ~ span {
+
+				position: absolute;
+				right: 14px;
+				border-radius: 50%;
+				box-shadow: 0 0 20px #ffd2d2;
+				transform: translateY(-50%);
+				top: 50%;
+
+				&::before {
+					content: "\1f453\fe0e";
+					font-weight: bold;
+					font-size: 24px;
+					right: 19px;
+					color: rgba(255, 0, 0, 0.31);
+					padding: 2px;
+					border-radius: 50%;
+					right: 19px;
+					display: flex;
+					align-items: center;
+					top: 4px;
+					justify-content: flex-end;
+				}
+			}
+		}
+	}
+}
