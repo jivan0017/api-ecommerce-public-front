@@ -1,8 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, catchError, finalize, map, of, switchMap } from 'rxjs';
-import { PATH_AUTH_LOGIN, PATH_AUTH_LOGOUT, PATH_AUTH_REGISTER, URL_BACKEND_SERVICES } from '../../../config/config';
+import {
+	BehaviorSubject,
+	Observable,
+	catchError,
+	finalize,
+	map,
+	of,
+	switchMap,
+	throwError
+} from 'rxjs';
+import {
+	PATH_AUTH_LOGIN,
+	PATH_AUTH_LOGOUT,
+	PATH_AUTH_REGISTER,
+	URL_BACKEND_SERVICES
+} from '../../../config/config';
 
 @Injectable({
 	providedIn: 'root'
@@ -45,6 +59,7 @@ export class AuthService {
 	}
 
 	login (email: string, password: string) {
+
 		this.isLoadingSubject.next(true);
 		let URL = `${URL_BACKEND_SERVICES}${PATH_AUTH_LOGIN}`;
 
@@ -59,23 +74,31 @@ export class AuthService {
 				return result;
 			}),
 			catchError((err) => {
-				return of(err)
+				console.log("from  servicec >>> errror ", err)
+				return throwError(() => (err));
+				// return of(err)
 			}),
 			finalize(() => this.isLoadingSubject.next(false))
 		)
 	}
 
 	register(data: any) {
+
+		console.log("pre postt ::: ", data)
 		this.isLoadingSubject.next(true);
 		let URL = `${URL_BACKEND_SERVICES}${PATH_AUTH_REGISTER}`;
 
-		this.http.post(URL, data).pipe(
-			map((response) => {
+		return this.http.post(URL, data).pipe(
+			map((response: any) => {
+				console.log(">>> from service register :: ", response)
 				this.currentUserSubject.next(response);
+				return response;
 			}),
 			switchMap(() => this.login(data.email, data.password)),
 			catchError((err) => {
-				return of(err)
+				// return of(err)
+				console.log("from  servicec >>> errror ", err)
+				return throwError(() => (err));
 			}),
 			finalize(() => this.isLoadingSubject.next(false))
 		)

@@ -1976,6 +1976,7 @@ function HOMME_INIT($) {
 	});
 
 	////////////////////////////////////////////////////
+	// TODO: Refactor
 	// 21. Password Toggle Js
 	if ($('.password-show-toggle__container').length > 0) {
 		// NOTE: REFACTOR: getElementsByClassName
@@ -1987,7 +1988,6 @@ function HOMME_INIT($) {
 			var closeEye = $(this).children('.open-close');
 
 			if ($(inputType).attr("type") === "password") {
-				console.log("passwword type into iff!")
 				$(inputType).attr("type", 'text');
 				$(openEye).css("display", "block");
 				$(closeEye).css("display", "none");

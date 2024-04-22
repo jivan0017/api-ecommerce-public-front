@@ -13,7 +13,9 @@ import { AuthService } from '../service/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { ConfirmPasswordValidator } from './confirm-password.validator';
+// import { confirmPasswordValidator } from './confirm-password.validator';
 import { CommonModule } from '@angular/common';
+
 
 @Component({
 	selector: 'app-register',
@@ -22,7 +24,6 @@ import { CommonModule } from '@angular/common';
 		FormsModule,
 		CommonModule,
 		ReactiveFormsModule,
-
 	],
 	templateUrl: './register.component.html',
 	styleUrl: './register.component.scss'
@@ -79,6 +80,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 	}
 
 	initForm() {
+
 		this.registrationForm = this.fb.group(
 			{
 				name: [
@@ -99,7 +101,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 				],
 				username: ['test', null],
 				email: [
-					'qwe@qwe.qwe',
+					'email@domain.com',
 					Validators.compose([
 						Validators.required,
 						Validators.email,
@@ -118,7 +120,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 					'',
 					Validators.compose([
 						Validators.required,
-						Validators.minLength(3),
+						Validators.minLength(8),
 						Validators.maxLength(100),
 					]),
 				],
@@ -126,14 +128,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
 					'',
 					Validators.compose([
 						Validators.required,
-						Validators.minLength(3),
+						Validators.minLength(8),
 						Validators.maxLength(100),
 					]),
 				],
 				agree: [true, Validators.compose([Validators.required])],
 			},
 			{
-				validator: ConfirmPasswordValidator.MatchPassword,
+				validators: ConfirmPasswordValidator.MatchPassword
 			}
 		);
 	}
@@ -147,5 +149,21 @@ export class RegisterComponent implements OnInit, OnDestroy {
 		}
 
 		console.log(JSON.stringify(this.registrationForm.value, null, 2));
+
+		this.authService.register(this.registrationForm.value)
+			.subscribe({
+				next: (response: any) => {
+					console.log(">>> from component", response)
+					if (response) {
+
+					}
+				},
+				error: (error: any) => {
+
+				},
+				complete: () => {
+
+				}
+			})
 	}
 }

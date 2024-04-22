@@ -7,13 +7,11 @@ ng g c pages/home --skip-tests
 
 # Login: 
 ng g c pages/auth/login --skip-tests
+ng g c pages/auth/register --skip-tests
 
-# Mensajes emergentes - descargar toast:
-- link:
-https://github.com/scttcper/ngx-toastr
+ng g s pages/auth/service/auth --skip-tests
+ng g g pages/auth/service/guard --skip-tests
 
-- Install toast:
-npm install ngx-toastr --save
-
-- Angular animations:
-npm install @angular/animations --save --force
+# Enviroments:
+- generación
+ng generate environments

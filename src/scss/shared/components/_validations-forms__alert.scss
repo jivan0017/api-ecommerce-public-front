@@ -38,3 +38,34 @@
 		}
 	}
 }
+
+.alert {
+	&.alert-danger {
+
+		&:hover:before{
+			-ms-transition: all 500ms ease-out;
+			transition: all 500ms ease-out;
+			background-color: #efc5c8;
+		}
+
+		margin-top: 0.5rem;
+
+		&::before {
+			-ms-transition: all 500ms ease-out;
+			transition: all 500ms ease-out;
+			content: "👆︎";
+			position: absolute;
+			top: -7px;
+			border: 1px solid #f5c2c7;
+			background: #f8d7da;
+			text-align: center;
+			height: 28px;
+			border-radius: 50%;
+			width: 28px;
+			left: 0.75rem;
+			z-index: 100;
+			font-size: 17px;
+			font-weight: bold;
+		}
+	}
+}

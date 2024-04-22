@@ -1,5 +1,5 @@
 <main>
-	@if(isLoading$ | async) {
+	<!-- @if(isLoading$ | async) {
 		<div class="loader-container">
 			<div class="spinner">
 				<div class="rect1"></div>
@@ -9,7 +9,8 @@
 				<div class="rect5"></div>
 			</div>
 		</div>
-	}
+	} -->
+	<app-loader-spinner [isLoading$]="isLoading$"></app-loader-spinner>
 
 
 	<!-- breadcrumb area start -->
@@ -47,25 +48,6 @@
 							<p>Don’t have an account? <span><a href="register.html">Create a free account</a></span></p>
 						</div>
 						<div class="tp-login-option">
-							<div
-								class="tp-login-social mb-10 d-flex flex-wrap align-items-center justify-content-center">
-								<div class="tp-login-option-item has-google">
-									<a href="#">
-										<img src="assets/img/icon/login/google.svg" alt="">
-										Sign in with google
-									</a>
-								</div>
-								<div class="tp-login-option-item">
-									<a href="#">
-										<img src="assets/img/icon/login/facebook.svg" alt="">
-									</a>
-								</div>
-								<div class="tp-login-option-item">
-									<a href="#">
-										<img class="apple" src="assets/img/icon/login/apple.svg" alt="">
-									</a>
-								</div>
-							</div>
 							<div class="tp-login-mail text-center mb-40">
 								<p>or Sign in with <a href="#">Email</a></p>
 							</div>
@@ -83,7 +65,7 @@
 										<input id="tp_password" type="password" placeholder="Min. 6 character"
 											[(ngModel)]="password">
 									</div>
-									<div class="tp-login-input-eye" id="password-show-toggle">
+									<div class="tp-login-input-eye password-show-toggle__container" id="password-show-toggle">
 										<span id="open-eye" class="open-eye">
 											<svg width="18" height="14" viewBox="0 0 18 14" fill="none"
 												xmlns="http://www.w3.org/2000/svg">
